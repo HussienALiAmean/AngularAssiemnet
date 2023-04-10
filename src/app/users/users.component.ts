@@ -1,6 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../servise/users.service';
+import { Iuser } from '../Shared Classes and types/Iuser';
 
 @Component({
   selector: 'app-users',
@@ -9,13 +10,13 @@ import { UsersService } from '../servise/users.service';
 })
 export class UsersComponent implements OnInit  {
 
-  useres:any;
+  useres:Iuser[]=[];
   constructor(private _UsersService:UsersService){}
   
   ngOnInit(): void {
    
     this._UsersService.getuseres().subscribe({
-      next: (data)=>{//this.useres=data;
+      next: (data)=>{this.useres=data;
       
       console.log(data);
       }
