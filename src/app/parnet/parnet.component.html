@@ -1,0 +1,17 @@
+<p>parnet works!</p>
+<app-child (chiledevent)="productlistCopy=$event"></app-child>
+<button (click)="changflag()" >show / toggle </button>
+<div *ngIf="!flage" class="row my-3">
+    <div class="col-md-6 col-lg-4" *ngFor="let item of productlistCopy; let i=index">
+    <div class="card" style="width: 18rem;">
+        <img [src]="item.Image" class="card-img-top" alt="..."/>
+        <div class="card-body">
+        <h5 class="card-title">{{item.Name }}</h5>
+        <h5 class="card-title">{{item.Price | currency:'GBP' }}</h5>
+        <h5 class="card-title">{{item.Quantity}}</h5>
+        <p class="card-text">Some quick example make up the bulk of th.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+    </div>
+</div>

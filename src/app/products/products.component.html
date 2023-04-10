@@ -1,0 +1,101 @@
+<div class="container">
+     <div class="row">
+        <div class="col-3">
+                     <h1>{{Store_name |  uppercase }}</h1>
+                     <img [src]= "Store_Logo" style="width: 100px; height: 100px;"/>
+                     <div *ngIf="Discount=='nodescunt'; then d; else F">
+                     </div>
+                           <ng-template #d>
+                            {{Discount | percent }}
+                           </ng-template>
+                           <ng-template #F>
+                           {{Discount}}
+                           </ng-template>
+        </div>
+        <div class="col-3">
+             <select name="h1" class="form-select"   > 
+                <option  *ngFor="let item of CategoryList" [value]="item.ID">{{item.Name}}</option>
+             </select>
+        </div> 
+        <div class="col-3">
+            <input type="text"  [(ngModel)]="ClientName">
+            {{ClientName}}
+       </div>     
+    </div>  
+</div>
+<div  *ngIf="IsPurshased; then Showproduct;  else hideproduct">
+   
+</div>
+    <ng-template #Showproduct>  
+        <div class="row my-3">
+            <div class="col-md-6 col-lg-4" *ngFor="let item of ProductList; let i=index">
+            <div class="card" style="width: 18rem;">
+                <img [src]="item.Image" class="card-img-top" alt="..."/>
+                <div class="card-body">
+                <h5 class="card-title">{{item.Name}}</h5>
+                <h5 class="card-title">{{ item.Price  }}</h5>
+                <h5 class="card-title">{{item.Quantity}}</h5>
+                <p class="card-text">Some quick example make up the bulk of th.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            </div>
+    </div>
+    </ng-template> 
+     <ng-template #hideproduct>
+    <div *ngIf="!IsPurshased" class="row my-3">
+        Thanks for purchasing from our Store + {{ClientName}}
+    </div>
+    </ng-template>
+
+   
+
+
+<div class="container">
+    <div class="row">
+        <table class="table table-striped
+        table-hover	
+        table-borderless
+        table-primary
+        align-middle">
+            <thead class="table-light">
+                <caption>Table Name</caption>
+                <tr>
+                    <th>Name</th>
+                    <th>Price </th>
+                    <th>Img </th>
+                    <th>Quantity </th>
+                    <th>Add To Cared </th>
+
+
+                </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <tr *ngFor="let item of ProductList" class="table-primary">
+                        <ng-container *ngIf="item.Quantity>0">
+                            <td scope="row">{{item.Name}}</td>
+                            <td>{{item.Price  }}</td>
+                            <td><img [src]="item.Image" style="width: 100px; height: 100px;" /></td>
+                            <td>{{item.Quantity}}</td>
+                            <td><button (click)="makeorder(item.ID)">Add To cared</button></td>
+                        </ng-container>
+                    </tr>
+                </tbody>
+                <tfoot> 
+                    
+                </tfoot>
+        </table>
+    </div>
+</div>
+<div class="container" >
+    <div class="row">
+        <div class="col-12">
+            <button type="button" (click)="Buy()" class="btn btn-primary">Buy</button>
+        </div>
+    </div>
+</div>
+
+
+        
+
+   
